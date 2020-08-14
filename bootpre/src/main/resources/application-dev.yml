@@ -4,15 +4,6 @@ server:
     context-path: /bootpre
 
 
-
-girl:
-  name: Lily
-  age: 18
-  phone: 65585672
-
-minMoney: 2.0
-description: 最小金额${minMoney}元
-
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -23,3 +14,17 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+limit:
+  minMoney: 10.0
+  maxMoney: 1000.0
+  description: 最少要发${limit.minMoney}, 最多发${limit.maxMoney}
+
+
+girl:
+  name: Lily
+  age: 18
+  phone: 65585672
+
+minMoney: 2.0
+description: 最小金额${minMoney}元

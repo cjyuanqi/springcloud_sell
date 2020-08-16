@@ -1,10 +1,14 @@
 package com.essa.bootpre.service;
 
 import com.essa.bootpre.domain.Girl;
+import com.essa.bootpre.enums.ResultEnum;
+import com.essa.bootpre.exceptions.GirlException;
 import com.essa.bootpre.repository.GirlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,10 +37,10 @@ public class GirlService {
 
         if (age < 10) {
             //返回"你还在上小学吧" code=100
-            throw new Exception("你还在上小学吧");
+            throw new GirlException(ResultEnum.PRIMARY_SCHOOL);
         }else if (age > 10 && age < 16) {
             //返回"你可能在上初中" code=101
-            throw new Exception("你可能在上初中");
+            throw new GirlException(ResultEnum.MIDDLE_SCHOOL);
         }
 
         //如果>16岁,加钱
@@ -52,4 +56,11 @@ public class GirlService {
         return girlRepository.findById(id).get();
     }
 
+    public List<Girl> findAll() {
+        return girlRepository.findAll();
+    }
+
+    public Girl add(Girl girl) {
+        return girlRepository.save(girl);
+    }
 }

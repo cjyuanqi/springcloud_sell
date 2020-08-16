@@ -1,6 +1,8 @@
 package com.essa.bootpre.controller;
 
 import com.essa.bootpre.config.GirlConfig;
+import com.essa.bootpre.domain.Result;
+import com.essa.bootpre.utils.ResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -18,17 +20,17 @@ public class HelloController {
     private GirlConfig girl;
 
     @GetMapping("/info")
-    public String info() {
-        return "MixMoney:" + mixMoney + " description:" + note;
+    public Result info() {
+        return ResultUtils.success("MixMoney:" + mixMoney + " description:" + note);
     }
 
     @GetMapping("/sign")
-    public String get() {
-        return "follow big brother Liao";
+    public Result get() {
+        return ResultUtils.success("follow big brother Liao");
     }
 
     @RequestMapping(value = {"/say","/hi"}, method = RequestMethod.GET)
-    public GirlConfig say(@PathVariable("id") Integer id) {
-        return girl;
+    public Result say(@PathVariable("id") Integer id) {
+        return ResultUtils.success(girl);
     }
 }
